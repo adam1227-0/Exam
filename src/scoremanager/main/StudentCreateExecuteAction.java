@@ -63,8 +63,9 @@ public class StudentCreateExecuteAction extends Action {
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("StudentCreate.action").forward(request, response);
 		}else{
+			    isAttend=true;
 			    entYear=Integer.parseInt(entYearStr);
-			   Student student = new Student();
+			    Student student = new Student();
 		        student.setNo(no);
 		        student.setName(name);
 		        student.setEntYear(entYear);//ここ？

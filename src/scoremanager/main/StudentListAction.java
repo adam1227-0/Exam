@@ -39,6 +39,10 @@ public class StudentListAction extends Action {
 		isAttendStr=request.getParameter("f3");
 
 		List<String>list=cNumDao.filter(teacher.getSchool());
+		if (entYearStr!=null){
+			//数値に変換
+			entYear=Integer.parseInt(entYearStr);
+		}
 
 		if (entYear!=0 && !classNum.equals("0")){
 			//入学年度とクラス番号を指定
@@ -61,10 +65,7 @@ public class StudentListAction extends Action {
 
 		}
 
-		if (entYearStr!=null){
-			//数値に変換
-			entYear=Integer.parseInt(entYearStr);
-		}
+
 		//リス地初期化
 		List<Integer>entYearSet=new ArrayList<>();
 		//１０年前から１年後までのリストを追加

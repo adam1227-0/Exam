@@ -22,7 +22,7 @@
             <div style="margin-top: 20px;">
                 <a class="nav-item px-2" href="Menu.action">戻る</a>
                 <span style="margin: 0 10px;"></span>
-                <a class="nav-item px-2" href="#">一覧表示</a>
+                <a class="nav-item px-2" href="StudentList.action">一覧表示</a>
           </div>
         </section>
     </c:param>
