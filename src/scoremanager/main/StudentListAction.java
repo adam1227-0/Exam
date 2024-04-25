@@ -22,11 +22,11 @@ public class StudentListAction extends Action {
 		HttpSession session=request.getSession();//セッション
 		Teacher teacher=(Teacher)session.getAttribute("user");
 
-		String entYearStr="";//入力された入学年度
-		String classNum="";//入力されたクラス番号
-		String isAttendStr="";//入力された在学フラグ
+		String entYearStr=request.getParameter("f1");//入力された入学年度
+		String classNum=request.getParameter("f2");//入力されたクラス番号
+		boolean isAttend = "t".equals(request.getParameter("f3"));	// チェックボックスの値が "t" の場合に true を設定する
 		int entYear=0;//入学年度
-		boolean isAttend=false;//在学フラグ
+
 		List<Student>students=null;//学生リスト
 		LocalDate todaysDate=LocalDate.now();//LocolDateインスタンスを取得
 		int year=todaysDate.getYear();//現在の年を取得
@@ -34,9 +34,7 @@ public class StudentListAction extends Action {
 		ClassNumDao cNumDao=new ClassNumDao();//クラス番号Daoを初期化
 		Map<String, String>errors=new HashMap<>();//エラーメッセージ
 
-		entYearStr=request.getParameter("f1");
-		classNum=request.getParameter("f2");
-		isAttendStr=request.getParameter("f3");
+
 
 		List<String>list=cNumDao.filter(teacher.getSchool());
 		if (entYearStr!=null){
@@ -45,6 +43,9 @@ public class StudentListAction extends Action {
 		}
 
 		if (entYear!=0 && !classNum.equals("0")){
+			System.out.println("entYear: " + entYear);
+			System.out.println("classNum: " + classNum);
+			System.out.println("isAttend: " + isAttend);
 			//入学年度とクラス番号を指定
 			students=sDao.filter(teacher.getSchool(),entYear,classNum,isAttend);
 
@@ -60,6 +61,7 @@ public class StudentListAction extends Action {
 		}else{
 			errors.put("f1","クラスを指定する場合は入学年度も指定してください");
 			request.setAttribute("errors", errors);
+
 			//全学生情報取得
 			students=sDao.filter(teacher.getSchool(),isAttend);
 
@@ -78,12 +80,12 @@ public class StudentListAction extends Action {
 		//リクエストにクラス番号をセット
 		request.setAttribute("f2",classNum);
 		//在学フラグが送信されていた場合
-		if (isAttendStr!=null){
-			//在学フラグを立てる
-			isAttend=true;
-			//リクエストに在学フラグをセット
-			request.setAttribute("f3",isAttendStr);
-		}
+//		if (isAttendStr!=null){
+//			//在学フラグを立てる
+//			isAttend=true;
+//			//リクエストに在学フラグをセット
+//			request.setAttribute("f3",isAttendStr);
+//		}
 		//リクエストに学生リストをセット
 		request.setAttribute("students",students);
 		//リクエストにデータをセット

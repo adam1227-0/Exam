@@ -1,10 +1,14 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Teacher;
+import dao.ClassNumDao;
 import tool.Action;
 
 public class StudentUpdateAction extends Action {
@@ -19,7 +23,13 @@ public class StudentUpdateAction extends Action {
 
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		String no="";
-		String entYearSet="";
+		String entYear="";
+		LocalDate todaysDate = LocalDate.now();	// LocalDateインスタンスを取得
+		int year = todaysDate.getYear();	// 現在の年を取得
+		ClassNumDao cNumDao = new ClassNumDao();	// クラス番号Daoをインスタンス化
+		entYear=req.getParameter("entYear");
+		no=req.getParameter("no");
+
 
 
 
@@ -28,10 +38,16 @@ public class StudentUpdateAction extends Action {
 		//なし
 
 		//レスポンス値をセット 6
+		System.out.println("aaaa");
+		System.out.println(no);
+		System.out.println(entYear);
+		System.out.println("aaaa");
+		List<String> list = cNumDao.filter(teacher.getSchool());
+		req.setAttribute("class_num_set", list);//↓↓↓  同じく  ↓↓↓
 
 		req.setAttribute("no", no);	// リクエストにデータをセット
-
-		req.setAttribute("ent_year_set", entYearSet);//↓↓↓  同じく  ↓↓↓
+		req.setAttribute("entYear", entYear);//↓↓↓  同じく  ↓↓↓
+		req.setAttribute("class_num_set", list);//↓↓↓  同じく  ↓↓↓
 
 		//JSPへフォワード 7
 

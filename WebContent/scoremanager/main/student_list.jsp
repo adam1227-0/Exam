@@ -14,6 +14,8 @@
 		  </div>
 		  <form action="StudentList.action" method="get">
 		  		<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+
+
 		  			<div class="col-4">
 		  				<label class="form-label"for="student-f1-select">入学年度</label>
 		  				<select class="form-select"id="student-f1-select"name="f1">
@@ -24,6 +26,8 @@
 		  					</c:forEach>
 		  				</select>
 		  			</div>
+
+
 		  			<div class="col-4">
 		  				<label class="form-label" for="student-f2-select">クラス</label>
 		  				<select class="form-select" id="student-f2-select" name="f2">
@@ -34,17 +38,23 @@
 		  					</c:forEach>
 		  				</select>
 		  			</div>
+
+
 		  			<div class="col-2 form-check text-center">
 		  				<label class="form-check-label" for="student-f3-check">在学中
 		  				<%--パラメータf3が在学している場合checkedを追記 --%>
-		  				<input class="form-check-input" type="checkbox" id="student-f3-check" name="f3"value="t"
-		  				<c:if test="${!empty f3}">checked</c:if>/>
+		  				<input class="form-check-input" type="checkbox" id="student-f3-check" name="f3" value="t" <c:if test="${!empty f3}">checked</c:if> />
+
 		  				</label>
 		  			</div>
+
+
 		  			<div class="col-2 text-center">
 		  				<button class="btn btn-secondary" id="filter-button">絞込み</button>
 		  			</div>
 		  			<div class="mt-2 text-warning">${ errors.get("f1")}</div>
+
+
 		  		</div>
 		  </form>
 		  <c:choose>
@@ -78,7 +88,7 @@
 		  							</c:otherwise>
 		  						</c:choose>
 		  				    </td>
-		  				    <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
+		  				    <td><a href="StudentUpdate.action?no=${student.no}&entYear=${student.entYear}">変更</a></td>
 		  				    <td><a href="StudentDelete.action?no=${student.no}">削除</a></td>
 		  				</tr>
 		  				</c:forEach>
