@@ -20,7 +20,6 @@
 				        <input type="text" class="form-control" name="f2" value="${no}" readonly style="border: none;">
 					</div>
 
-
 		  			<div class="col-11">
     					<label class="form-label" for="student-f3-input">氏名</label>
     					<input type="text"  class="form-control" id="student-f3-input"name="f3" placeholder="氏名を入力してください"<c:if test="${name!=null}">value="${name}"</c:if>>
