@@ -11,7 +11,7 @@ import dao.ClassNumDao;
 import tool.Action;
 
 public class SubjectCreateAction extends Action{
-	
+
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		// ローカル変数の宣言
 
