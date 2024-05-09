@@ -28,4 +28,3 @@ public class Subject implements Serializable{
 
 
 }
-//コメント

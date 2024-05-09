@@ -46,4 +46,3 @@ public void setSchool (School school) {
 }
 }
 
-//コメント

@@ -48,5 +48,3 @@ public class TestListSubject implements Serializable{
     	return;
     }
 }
-
-//コメント
