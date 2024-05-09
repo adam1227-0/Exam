@@ -14,8 +14,7 @@ import bean.Teacher;
 import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.Action;
-public class StudentListAction extends Action {
-
+public class SubjectList extends Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//TODO 自動生成されたメソッド·スタブ
@@ -43,6 +42,9 @@ public class StudentListAction extends Action {
 		}
 
 		if (entYear!=0 && !classNum.equals("0")){
+			System.out.println("entYear: " + entYear);
+			System.out.println("classNum: " + classNum);
+			System.out.println("isAttend: " + isAttend);
 			//入学年度とクラス番号を指定
 			students=sDao.filter(teacher.getSchool(),entYear,classNum,isAttend);
 
@@ -90,7 +92,7 @@ public class StudentListAction extends Action {
 		request.setAttribute("ent_year_set",entYearSet);
 		System.out.println("カモン");
 		//JSPにフォワード 7
-		request.getRequestDispatcher("student_list.jsp").forward(request,response);
+		request.getRequestDispatcher("subuject_list.jsp").forward(request,response);
 
 	}
 

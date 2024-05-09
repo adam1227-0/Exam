@@ -14,7 +14,7 @@ import bean.Teacher;
 import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.Action;
-public class StudentListAction extends Action {
+public class SubjectListAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -33,6 +33,7 @@ public class StudentListAction extends Action {
 		StudentDao sDao=new StudentDao();//学生dao
 		ClassNumDao cNumDao=new ClassNumDao();//クラス番号Daoを初期化
 		Map<String, String>errors=new HashMap<>();//エラーメッセージ
+		//+科目
 
 
 
@@ -90,7 +91,7 @@ public class StudentListAction extends Action {
 		request.setAttribute("ent_year_set",entYearSet);
 		System.out.println("カモン");
 		//JSPにフォワード 7
-		request.getRequestDispatcher("student_list.jsp").forward(request,response);
+		request.getRequestDispatcher("subject_list.jsp").forward(request,response);
 
 	}
 

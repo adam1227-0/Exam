@@ -1,6 +1,7 @@
 package scoremanager.main;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.Action;
-public class StudentCreateExecuteAction extends Action {
+public class StudentUpdateExecuteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,7 +25,6 @@ public class StudentCreateExecuteAction extends Action {
 		String no="";
 		String name="";
 		String classNum="";//入力されたクラス番号
-		String isAttendStr="";//入力された在学フラグ
 		int entYear=0;//入学年度
 		boolean isAttend=false;//在学フラグ
 
@@ -34,37 +35,46 @@ public class StudentCreateExecuteAction extends Action {
 		StudentDao sDao=new StudentDao();//学生dao
 		Map<String, String>errors=new HashMap<>();//エラーメッセージ
 
-		entYearStr=request.getParameter("f1");
-		no=request.getParameter("f2");
-		name=request.getParameter("f3");
-		classNum=request.getParameter("f4");
-
+		entYearStr=request.getParameter("f1");//入学年度
+		no=request.getParameter("f2");//学生番号
+		name=request.getParameter("f3");//氏名
+		classNum=request.getParameter("f4");//クラス
+		isAttend = "t".equals(request.getParameter("f5")); // チェックボックスの値が "t" の場合に true を設定する
+		System.out.println("---------------------");
 		System.out.println(entYearStr);
 		System.out.println(no);
 		System.out.println(name);
 		System.out.println(classNum);
-		if (entYearStr.equals("0")){
-			//入学年度とクラス番号を指定
-			errors.put("f1", "入学年度を選択してください");
+		System.out.println("---------------------");
+		if (entYearStr!=null){
+			//数値に変換
+			entYear=Integer.parseInt(entYearStr);
+		}
+
+		if (name.isEmpty()){
+
+			errors.put("f3", "氏名を選択してください");
 			request.setAttribute("no", no);
+			request.setAttribute("entYear", entYearStr);
 			request.setAttribute("name", name);
 			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("StudentCreate.action").forward(request, response);
-		}else if (sDao.get(no)!=null){
-			errors.put("f2", "学生番号が重複しています");
+			ClassNumDao cNumDao = new ClassNumDao();	// クラス番号Daoをインスタンス化
+			List<String> list = cNumDao.filter(teacher.getSchool());
+			request.setAttribute("class_num_set", list);//↓↓↓  同じく  ↓↓↓
+			request.getRequestDispatcher("student_update.jsp").forward(request, response);
+
+		}else if (classNum.equals("0")){
+
+			errors.put("f4", "クラスを入力してください");
 			request.setAttribute("no", no);
+			request.setAttribute("entYear", entYearStr);
 			request.setAttribute("name", name);
-			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("StudentCreate.action").forward(request, response);
-		}else if (no==null){
-			errors.put("f2", "学生番号を入力してください");
-			request.setAttribute("no", no);
-			request.setAttribute("name", name);
-			request.setAttribute("errors", errors);
-			request.getRequestDispatcher("StudentCreate.action").forward(request, response);
-		}else{
-			    isAttend=true;
-			    entYear=Integer.parseInt(entYearStr);
+			ClassNumDao cNumDao = new ClassNumDao();	// クラス番号Daoをインスタンス化
+			List<String> list = cNumDao.filter(teacher.getSchool());
+			request.setAttribute("class_num_set", list);//↓↓↓  同じく  ↓↓↓
+			request.getRequestDispatcher("student_update.jsp").forward(request, response);
+
+		}else {
 			    Student student = new Student();
 		        student.setNo(no);
 		        student.setName(name);
@@ -75,7 +85,7 @@ public class StudentCreateExecuteAction extends Action {
 
 		        // StudentDaoを使って学生情報をデータベースに保存
 		        sDao.save(student);
-		    request.getRequestDispatcher("student_create_done.jsp").forward(request, response);
+		    request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
 		}
 	}
 

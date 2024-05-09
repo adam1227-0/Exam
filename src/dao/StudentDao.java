@@ -11,7 +11,7 @@ import bean.School;
 import bean.Student;
 
 public class StudentDao extends Dao {
-private String baseSql="select * from student where school_cd=?";
+private String baseSql="select * from student where school_cd=? ";
 public Student get(String no) throws Exception {
 	//学生インスタンスを初期化
 	Student student=new Student();
@@ -21,7 +21,7 @@ public Student get(String no) throws Exception {
 	PreparedStatement statement=null;
 	try{
 		//プリペアードステートメントにSQL文をセット
-		statement=connection.prepareStatement("select * from student where no=?");
+		statement=connection.prepareStatement("select * from student where no=? ");
 		//プリペアードステートメントに学生番号をバインド
 		statement.setString(1, no);
 		//プリペアードステートメントを実行
@@ -106,7 +106,7 @@ public List<Student> filter (School school, int entYear, String classNum, boolea
 	//SQL文の条件
 	String condition="and ent_year=? and class_num=?";
 	//SQL文のソート
-	String order= "order by no asc";
+	String order= " order by no asc";
 	//SQL文の在学フラグ条件
 	String conditionIsAttend="";
 	//在学フラグがtrueの場合
@@ -160,9 +160,9 @@ public List<Student> filter (School school, int entYear, boolean isAttend) throw
 		//リザルトセット
 		ResultSet rSet=null;
 		//SQL文の条件
-		String condition="and ent_year=?";
+		String condition= "and ent_year=? ";
 		//SQL文のソート
-		String order= "order by no asc";
+		String order= " order by no asc";
 		//SQL文の在学フラグ条件
 		String conditionIsAttend="";
 		//在学フラグがtrueの場合
@@ -214,16 +214,16 @@ public List<Student> filter (School school, boolean isAttend) throws Exception {
 		//リザルトセット
 		ResultSet rSet=null;
 		//SQL文の条件
-		String order= "order by no asc";
+		String order= " order by no asc";
 		//SQL文の在学フラグ
 		String conditionIsAttend="";
 		//在学フラグがtrueの場合
 		if (isAttend){
-			conditionIsAttend="and is_attend=true";
+			conditionIsAttend= "and is_attend=true";
 		}
 		try{
 			//プリペアードステートメントにSQL文をセット
-			statement=connection.prepareStatement(baseSql+conditionIsAttend+order);
+			statement=connection.prepareStatement(baseSql + conditionIsAttend + order);
 			//プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 			//プリペアードステートメントを実行

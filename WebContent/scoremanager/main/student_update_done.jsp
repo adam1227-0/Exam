@@ -7,9 +7,9 @@
     <c:param name="scripts"></c:param>
     <c:param name="content">
         <section class="mo-4">
-          <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
+          <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
           <div class="bg-success" style="--bs-bg-opacity: .5;">
-            <h5 style="text-align:center; font-size: smaller; color: #777;">登録が完了しました</h5>
+            <h5 style="text-align:center; font-size: smaller; color: #777;">変更が完了しました</h5>
             </div>
             <br>
              <br>
