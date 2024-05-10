@@ -27,6 +27,7 @@ public class StudentCreateExecuteAction extends Action {
 		int entYear=0;//入学年度
 		boolean isAttend=false;//在学フラグ
 
+
 		//List<Student>students=null;//学生リスト
 
 		LocalDate todaysDate=LocalDate.now();//LocolDateインスタンスを取得

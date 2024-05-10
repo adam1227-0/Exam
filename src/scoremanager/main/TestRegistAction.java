@@ -20,6 +20,7 @@ public class TeatRegistAction extends Action {
 
 	@Override
 
+
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String entYearStr=request.getParameter("f1");//入力された入学年度
 		String classNum=request.getParameter("f2");//入力されたクラス番号
