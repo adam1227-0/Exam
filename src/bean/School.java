@@ -33,3 +33,5 @@ public class School implements Serializable {
 		this.name = name;
 	}
 }
+
+//コメント
