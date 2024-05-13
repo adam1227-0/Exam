@@ -14,7 +14,7 @@ import bean.School;
 import bean.Subject;
 import bean.TestListSubject;
 
-public class TestListSubjectDao extends Dao {
+public class TestNoDao extends Dao {
 
 	String basesql = "select s.ENT_YEAR, s.NO, s.NAME, s.CLASS_NUM, t.NO, t.POINT from TEST as t left join STUDENT as s on t.STUDENT_NO=s.NO ";
 

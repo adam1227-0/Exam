@@ -31,5 +31,9 @@ public class TestListStudent implements Serializable{
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public void setSubjectCd(String string) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
 }
 
