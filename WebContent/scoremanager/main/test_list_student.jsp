@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%--学生一覧 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -19,13 +18,13 @@
 
 		<section class="mo-4">
 
-		  <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
+		  <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
 
-		 <%--  <div class="my-2 text-end px-4">
+		  <div class="my-2 text-end px-4">
 
 		  		<a href="StudentCreate.action">新規登録</a>
 
-		  </div> --%>
+		  </div>
 
 		  <form action="" method="get">
 
@@ -62,27 +61,43 @@
 
 
 		  			<div class="col-2">
+
 		  				<label class="form-label" for="student-f2-select">クラス</label>
+
 		  				<select class="form-select" id="student-f2-select" name="f2">
+
 		  					<option value="0">--------</option>
+
 		  					<c:forEach var="num" items="${class_num_set}">
+
 		  						<%--現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
+
 		  						<option value="${num}"<c:if test="${num==f2}">selected</c:if>>${num}</option>
+
 		  					</c:forEach>
+
 		  				</select>
+
 		  			</div>
 
-
-
 		  			<div class="col-4">
+
 		  				<label class="form-label" for="student-f2-select">科目</label>
+
 		  				<select class="form-select" id="student-f3-select" name="f3">
+
 		  					<option value="0">--------</option>
-		  					<c:forEach var="num" items="">
+
+		  					<c:forEach var="num" items="<%--&{} --%>">
+
 		  						<%--現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
+
 		  						<option value="${num}"<c:if test="${num==f3}">selected</c:if>>${num}</option>
+
 		  					</c:forEach>
+
 		  				</select>
+
 		  			</div>
 
 
@@ -209,54 +224,7 @@
 
 		</section>
 
+
 	</c:param>
 
 </c:import>
-=======
-<%-- 科目一覧 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:import url="/common/base.jsp">
-	<c:param name="title">
-	      得点管理システム
-	</c:param>
-	<c:param name="scripts"></c:param>
-	<c:param name="content">
-		<section class="mo-4">
-		  <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
-
-		  			<table class="table table-hover">
-		  				<tr>
-		  					<th>入学年度</th>
-		  					<th>学生番号</th>
-		  					<th>氏名</th>
-		  					<th>クラス</th>
-		  					<th>1回</th>
-		  					<th>2回</th>
-		  					<th></th>
-		  				</tr>
-		  				<c:forEach var ="subject" items="${subjects}">
-		  				<tr>
-		  					<td>${student.entYear}</td>
-		  					<td>${test.student_No}</td>
-		  					<td>${student.name}</td>
-		  					<td>${test.student_No}</td>
-
-		  					<td class="test_no">
-		  						<%--点数が入っていない場合は - を表示--%>
-		  						<c:choose>
-		  							<c:when test="${test.no()}">
-		  							 	${test.no}
-		  							</c:when>
-		  							<c:otherwise>
-		  								-
-		  							</c:otherwise>
-		  						</c:choose>
-		  				    </td>
-		  				</tr>
-		  				</c:forEach>
-		  			</table>
-		</section>
-	</c:param>
-</c:import>
->>>>>>> branch 'master' of https://github.com/adam1227-0/Exam.git

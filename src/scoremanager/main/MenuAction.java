@@ -13,7 +13,7 @@ public class MenuAction extends Action {
 		//なし
 		//リクエストパラメータ―の取得 2
 		//なし
-		//DBからデータ取得 3
+		//DBからデータ取得 3dd
 		//なし
 		//ビジネスロジック 4
 		//なし
